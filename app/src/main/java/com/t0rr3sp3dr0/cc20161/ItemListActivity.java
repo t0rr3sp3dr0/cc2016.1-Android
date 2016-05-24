@@ -50,8 +50,7 @@ public class ItemListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "<>    Developed by Pedro Tôrres", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "<>    Developed by Pedro Tôrres\nFork me on GitHub @t0rr3sp3dr0", Snackbar.LENGTH_LONG).show();
             }
         });
 

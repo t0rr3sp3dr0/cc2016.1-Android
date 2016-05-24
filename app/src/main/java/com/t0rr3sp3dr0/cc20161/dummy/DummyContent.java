@@ -30,10 +30,10 @@ public class DummyContent {
 //        for (int i = 1; i <= COUNT; i++) {
 //            addItem(createDummyItem(i));
 //        }
-        addItem(new DummyItem("lmmc2", "Larícia Mota", ""));
-        addItem(new DummyItem("mngs", "Mateus Nunes", ""));
-        addItem(new DummyItem("phls", "Pedro Henrique", ""));
-        addItem(new DummyItem("rmmaf", "Rodrigo Falcão", ""));
+        addItem(new DummyItem("lmmc2", "Larícia Mota", "+55 (81) 99969-9962"));
+        addItem(new DummyItem("mngs", "Mateus Nunes", "+55 (81) 99845-8658"));
+        addItem(new DummyItem("phls", "Pedro Henrique", "+55 (81) 99873-1802"));
+        addItem(new DummyItem("rmmaf", "Rodrigo Falcão", "+55 (81) 98188-9846"));
     }
 
     private static void addItem(DummyItem item) {

@@ -1,17 +1,22 @@
 package com.t0rr3sp3dr0.cc20161;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.t0rr3sp3dr0.cc20161.dummy.DummyContent;
@@ -105,7 +110,62 @@ public class ItemDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.details);
+            final RelativeLayout call = (RelativeLayout) rootView.findViewById(R.id.call);
+            final RelativeLayout message = (RelativeLayout) rootView.findViewById(R.id.message);
+            final RelativeLayout mail = (RelativeLayout) rootView.findViewById(R.id.mail);
+            final RelativeLayout web = (RelativeLayout) rootView.findViewById(R.id.web);
+
+            if (mItem.details.equals("")) {
+                call.setVisibility(View.GONE);
+                message.setVisibility(View.GONE);
+            } else {
+                ((TextView) rootView.findViewById(R.id.callField)).setText(mItem.details);
+                call.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:" + mItem.details));
+                        startActivity(intent);
+                    }
+                });
+
+                ((TextView) rootView.findViewById(R.id.messageField)).setText(mItem.details);
+                message.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_SENDTO);
+                        intent.setData(Uri.parse("smsto:" + mItem.details));
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            ((TextView) rootView.findViewById(R.id.mailField)).setText(mItem.id + "@cin.ufpe.br");
+            mail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("message/rfc822");
+                        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{mItem.id + "@cin.ufpe.br"});
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        e.printStackTrace();
+                        mail.setVisibility(View.GONE);
+                        Snackbar.make(getView(), "Aplicativo de email não encontrado", Snackbar.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+            ((TextView) rootView.findViewById(R.id.webField)).setText("https://cin.ufpe.br/~" + mItem.id);
+            web.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("https://cin.ufpe.br/~" + mItem.id));
+                    startActivity(intent);
+                }
+            });
         }
 
         return rootView;
