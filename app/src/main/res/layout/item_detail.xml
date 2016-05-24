@@ -83,4 +83,23 @@
             android:layout_toRightOf="@id/webIcon"
             style="?android:attr/textAppearanceMedium" />
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/contactIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_person_add_black_48dp" />
+        <TextView
+            android:id="@+id/contactField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/contactIcon"
+            style="?android:attr/textAppearanceMedium" />
+    </RelativeLayout>
 </LinearLayout>

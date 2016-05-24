@@ -4,15 +4,22 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +28,8 @@ import android.widget.TextView;
 
 import com.t0rr3sp3dr0.cc20161.dummy.DummyContent;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 /**
@@ -114,6 +123,7 @@ public class ItemDetailFragment extends Fragment {
             final RelativeLayout message = (RelativeLayout) rootView.findViewById(R.id.message);
             final RelativeLayout mail = (RelativeLayout) rootView.findViewById(R.id.mail);
             final RelativeLayout web = (RelativeLayout) rootView.findViewById(R.id.web);
+            final RelativeLayout contact = (RelativeLayout) rootView.findViewById(R.id.contact);
 
             if (mItem.details.equals("")) {
                 call.setVisibility(View.GONE);
@@ -166,6 +176,22 @@ public class ItemDetailFragment extends Fragment {
                     startActivity(intent);
                 }
             });
+
+            ((TextView) rootView.findViewById(R.id.contactField)).setText(mItem.content);
+            contact.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
+                    intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
+                    intent.putExtra(ContactsContract.Intents.Insert.NAME, mItem.content)
+                            .putExtra(ContactsContract.Intents.Insert.PHONE, mItem.details)
+                            .putExtra(ContactsContract.Intents.Insert.EMAIL, mItem.id + "@cin.ufpe.br")
+                            .putExtra(ContactsContract.Data.IS_SUPER_PRIMARY, 1)
+                            .putExtra(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Photo.CONTENT_ITEM_TYPE)
+                            .putExtra(ContactsContract.CommonDataKinds.Photo.PHOTO, contactPicture(getResources().getIdentifier(mItem.id, "drawable", "com.t0rr3sp3dr0.cc20161")));
+                    startActivity(intent);
+                }
+            });
         }
 
         return rootView;
@@ -175,7 +201,16 @@ public class ItemDetailFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
 
-        if (mediaPlayer.isPlaying())
+        if (mediaPlayer != null && mediaPlayer.isPlaying())
             mediaPlayer.pause();
+    }
+
+    public byte[] contactPicture(int drawableId){
+        Drawable drawable = ContextCompat.getDrawable(getContext(), drawableId);
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
+        byte[] bitMapData = stream.toByteArray();
+        return bitMapData;
     }
 }
