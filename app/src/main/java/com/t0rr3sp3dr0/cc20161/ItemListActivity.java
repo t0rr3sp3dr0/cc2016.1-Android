@@ -13,6 +13,7 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -90,6 +91,7 @@ public class ItemListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
+            holder.mPictureView.setImageResource(getResources().getIdentifier(mValues.get(position).id, "drawable", "com.t0rr3sp3dr0.cc20161"));
             holder.mIdView.setText(mValues.get(position).id);
             holder.mContentView.setText(mValues.get(position).content);
 
@@ -122,6 +124,7 @@ public class ItemListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
+            public final ImageView mPictureView;
             public final TextView mIdView;
             public final TextView mContentView;
             public DummyContent.DummyItem mItem;
@@ -129,6 +132,7 @@ public class ItemListActivity extends AppCompatActivity {
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
+                mPictureView = (ImageView) view.findViewById(R.id.picture);
                 mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
             }
