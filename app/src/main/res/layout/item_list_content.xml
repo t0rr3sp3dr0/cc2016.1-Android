@@ -3,12 +3,25 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/picture"
+    <RelativeLayout
+        android:id="@+id/frameLayout"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp">
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="-16dp"
+            android:layout_marginLeft="-16dp"
+            android:layout_marginRight="-16dp"
+            android:layout_marginTop="-16dp"
+            android:src="@drawable/circle"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/id"
@@ -16,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem"
-        android:layout_toRightOf="@id/picture"
+        android:layout_toRightOf="@id/frameLayout"
         android:layout_centerVertical="true" />
 
     <TextView
