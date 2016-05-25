@@ -30,10 +30,17 @@ public class DummyContent {
 //        for (int i = 1; i <= COUNT; i++) {
 //            addItem(createDummyItem(i));
 //        }
+        addItem(new DummyItem("esvm", "Edjan Michiles", "+55 (81) 99509-9949"));
+        addItem(new DummyItem("ggfl", "Guilherme Lima", "+55 (81) 99286-0885"));
+        addItem(new DummyItem("irs", "Italo Soares", "+55 (85) 99697-1669"));
         addItem(new DummyItem("lmmc2", "Larícia Mota", "+55 (81) 99969-9962"));
-        addItem(new DummyItem("mngs", "Mateus Nunes", "+55 (81) 99845-8658"));
+        addItem(new DummyItem("lvrma", "Lucas Valença", "+55 (81) 98212-6789"));
+        addItem(new DummyItem("mlmv", "Mateus Nunes", "+55 (81) 99845-8658"));
+        addItem(new DummyItem("mngs", "Malu Menezes", "+55 (81) 99730-0476"));
         addItem(new DummyItem("phls", "Pedro Henrique", "+55 (81) 99873-1802"));
+        addItem(new DummyItem("psq", "Pedro Queiroga", "+55 (81) 99751-0910"));
         addItem(new DummyItem("rmmaf", "Rodrigo Falcão", "+55 (81) 98188-9846"));
+        addItem(new DummyItem("rps4", "Rafael Prado", "+55 (79) 98828-4514"));
     }
 
     private static void addItem(DummyItem item) {

@@ -83,8 +83,6 @@ public class ItemDetailFragment extends Fragment {
                 appBar.setLayoutParams(params);
 
                 fab = (FloatingActionButton) activity.findViewById(R.id.fab);
-                mediaPlayer = MediaPlayer.create(getContext(), getResources().getIdentifier(mItem.id, "raw", "com.t0rr3sp3dr0.cc20161"));
-
                 fab.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -98,16 +96,21 @@ public class ItemDetailFragment extends Fragment {
                     }
                 });
 
-                if (mediaPlayer.isPlaying())
-                    fab.setImageResource(R.drawable.ic_pause_white_48dp);
-                else
-                    fab.setImageResource(R.drawable.ic_play_arrow_white_48dp);
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
+                try {
+                    mediaPlayer = MediaPlayer.create(getContext(), getResources().getIdentifier(mItem.id, "raw", "com.t0rr3sp3dr0.cc20161"));
+                    if (mediaPlayer.isPlaying())
+                        fab.setImageResource(R.drawable.ic_pause_white_48dp);
+                    else
                         fab.setImageResource(R.drawable.ic_play_arrow_white_48dp);
-                    }
-                });
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            fab.setImageResource(R.drawable.ic_play_arrow_white_48dp);
+                        }
+                    });
+                } catch (Exception e) {
+                    fab.setVisibility(View.GONE);
+                }
             }
         }
     }

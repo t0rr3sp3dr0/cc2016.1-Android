@@ -35,7 +35,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_message_black_48dp" />
+            android:src="@drawable/ic_textsms_black_48dp" />
         <TextView
             android:id="@+id/messageField"
             android:layout_width="match_parent"
