@@ -2,24 +2,24 @@ package com.t0rr3sp3dr0.cc20161;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.t0rr3sp3dr0.cc20161.dummy.DummyContent;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * An activity representing a list of Items. This activity
@@ -37,6 +37,8 @@ public class ItemListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
+    private Map<String, Drawable> thumbnailsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,8 @@ public class ItemListActivity extends AppCompatActivity {
                 Snackbar.make(view, "<>    Developed by Pedro Tôrres\nFork me on GitHub @t0rr3sp3dr0", Snackbar.LENGTH_LONG).show();
             }
         });
+
+        thumbnailsList = DummyContent.thumbnailsList(getApplicationContext());
 
         View recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
@@ -90,7 +94,7 @@ public class ItemListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mPictureView.setImageResource(getResources().getIdentifier(mValues.get(position).id, "drawable", "com.t0rr3sp3dr0.cc20161"));
+            holder.mPictureView.setImageDrawable(thumbnailsList.get(mValues.get(position).id));
             holder.mIdView.setText(mValues.get(position).id);
             holder.mContentView.setText(mValues.get(position).content);
 

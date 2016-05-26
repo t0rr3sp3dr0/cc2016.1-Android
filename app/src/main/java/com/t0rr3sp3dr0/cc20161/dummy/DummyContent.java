@@ -1,5 +1,13 @@
 package com.t0rr3sp3dr0.cc20161.dummy;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.util.ArrayMap;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,17 +38,23 @@ public class DummyContent {
 //        for (int i = 1; i <= COUNT; i++) {
 //            addItem(createDummyItem(i));
 //        }
+        addItem(new DummyItem("ascj", "Alecsandro Silva", "+55 (81) 99687-1272"));
+        addItem(new DummyItem("cco2", "Claudio Carvalho", "+55 (81) 98859-5275"));
+        addItem(new DummyItem("dfb2", "Daniel Filgueira", "+55 (81) 99956-9764"));
         addItem(new DummyItem("esvm", "Edjan Michiles", "+55 (81) 99509-9949"));
         addItem(new DummyItem("ggfl", "Guilherme Lima", "+55 (81) 99286-0885"));
         addItem(new DummyItem("irs", "Italo Soares", "+55 (85) 99697-1669"));
         addItem(new DummyItem("lmmc2", "Larícia Mota", "+55 (81) 99969-9962"));
         addItem(new DummyItem("lvrma", "Lucas Valença", "+55 (81) 98212-6789"));
-        addItem(new DummyItem("mlmv", "Mateus Nunes", "+55 (81) 99845-8658"));
-        addItem(new DummyItem("mngs", "Malu Menezes", "+55 (81) 99730-0476"));
+        addItem(new DummyItem("mlmv", "Malu Menezes", "+55 (81) 99730-0476"));
+        addItem(new DummyItem("mngs", "Mateus Nunes", "+55 (81) 99845-8658"));
         addItem(new DummyItem("phls", "Pedro Henrique", "+55 (81) 99873-1802"));
+        addItem(new DummyItem("phts", "Pedro Tôrres", "+55 (81) 98238-0880"));
         addItem(new DummyItem("psq", "Pedro Queiroga", "+55 (81) 99751-0910"));
         addItem(new DummyItem("rmmaf", "Rodrigo Falcão", "+55 (81) 98188-9846"));
         addItem(new DummyItem("rps4", "Rafael Prado", "+55 (79) 98828-4514"));
+        addItem(new DummyItem("rpss", "Ramom Pereira", "+55 (87) 99681-8972"));
+//        addItem(new DummyItem("vms5", "Victor Martins Soares", "+55 () -"));
     }
 
     private static void addItem(DummyItem item) {
@@ -59,6 +73,20 @@ public class DummyContent {
             builder.append("\nMore details information here.");
         }
         return builder.toString();
+    }
+
+    public static final Drawable thumbnailPicture(Context context, int resId) {
+        Drawable image = ContextCompat.getDrawable(context, resId);
+        Bitmap b = ((BitmapDrawable) image).getBitmap();
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 128, 128, false);
+        return new BitmapDrawable(Resources.getSystem(), bitmapResized);
+    }
+
+    public static final Map<String, Drawable> thumbnailsList(Context context) {
+        Map<String, Drawable> map = new ArrayMap<>();
+        for (DummyItem item : ITEMS)
+            map.put(item.id, thumbnailPicture(context, context.getResources().getIdentifier(item.id, "drawable", "com.t0rr3sp3dr0.cc20161")));
+        return map;
     }
 
     /**
