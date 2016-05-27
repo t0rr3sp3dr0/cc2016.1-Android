@@ -3,6 +3,7 @@ package com.t0rr3sp3dr0.cc20161;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -52,7 +53,16 @@ public class ItemListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "<>    Developed by Pedro Tôrres\nFork me on GitHub @t0rr3sp3dr0", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view, "<>    Developed by Pedro Tôrres\nFork me on GitHub @t0rr3sp3dr0", Snackbar.LENGTH_LONG)
+                        .setAction("FORK", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("https://github.com/t0rr3sp3dr0/cc2016.1-Android"));
+                                startActivity(intent);
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -93,6 +103,7 @@ public class ItemListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
+            System.out.println(position);
             holder.mItem = mValues.get(position);
             holder.mPictureView.setImageDrawable(thumbnailsList.get(mValues.get(position).id));
             holder.mIdView.setText(mValues.get(position).id);
