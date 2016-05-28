@@ -43,11 +43,13 @@ public class DummyContent {
         addItem(new DummyItem("cco2", "Claudio Carvalho", "+55 (81) 98859-5275"));
         addItem(new DummyItem("dfb2", "Daniel Filgueira", "+55 (81) 99956-9764"));
         addItem(new DummyItem("dvf", "Danilo Freitas", "+55 (81) 98938-1346"));
+        addItem(new DummyItem("egsj", "Evaldo Júnior", "+55 (81) 99737-7461"));
         addItem(new DummyItem("esvm", "Edjan Michiles", "+55 (81) 99509-9949"));
         addItem(new DummyItem("memgra", "Eulália Aires", "+55 (81) 99713-4797"));
         addItem(new DummyItem("gacm", "Guilherme Augusto", ""));
         addItem(new DummyItem("ggfl", "Guilherme Gouveia", "+55 (81) 99286-0885"));
         addItem(new DummyItem("gms2", "Gabriel Monteiro", "+55 (81) 99959-4519"));
+        addItem(new DummyItem("ham2", "Henrique Mariz", "+55 (81) 99705-0496"));
         addItem(new DummyItem("irs", "Italo Soares", "+55 (85) 99697-1669"));
         addItem(new DummyItem("jgs3", "Joyce Santana", "+55 (81) 98763-5983"));
         addItem(new DummyItem("lmmc2", "Larícia Mota", "+55 (81) 99969-9962"));

@@ -103,7 +103,6 @@ public class ItemListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            System.out.println(position);
             holder.mItem = mValues.get(position);
             holder.mPictureView.setImageDrawable(thumbnailsList.get(mValues.get(position).id));
             holder.mIdView.setText(mValues.get(position).id);
