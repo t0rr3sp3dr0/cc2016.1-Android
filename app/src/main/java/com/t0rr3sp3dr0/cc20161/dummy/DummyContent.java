@@ -57,6 +57,7 @@ public class DummyContent {
         addItem(new DummyItem("jva", "Josenildo Vicente", "+55 (81) 98225-7747"));
         addItem(new DummyItem("jgs3", "Joyce Santana", "+55 (81) 98763-5983"));
         addItem(new DummyItem("lmmc2", "Larícia Mota", "+55 (81) 99969-9962"));
+        addItem(new DummyItem("lams3", "Luca Ananias", "+55 (81) 97909-0189"));
         addItem(new DummyItem("lavn", "Lucas Asafe", "+55 (81) 99899-0714"));
         addItem(new DummyItem("lml", "Lucas Lin", ""));
         addItem(new DummyItem("lvrma", "Lucas Valença", "+55 (81) 98212-6789"));
