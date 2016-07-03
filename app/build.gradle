@@ -8,7 +8,7 @@ android {
         applicationId "com.t0rr3sp3dr0.cc20161"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 3
+        versionCode 4
         versionName "1.0"
     }
     buildTypes {
